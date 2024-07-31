@@ -1,20 +1,15 @@
 # Rundeck Microsoft Teams Notification Plugin
 
 ## Goal
-Allows to set up notification for *Microsoft Teams* chats for a channel, via Webhook URL.
-To use it you will have to obtain *webhook* for your Microsoft Teams channel first and set it up.
+Allows to set up notification for *Microsoft Teams* chats for a channel, via Workflow URL.
+To use it you will have to obtain *workflow* for your Microsoft Teams channel first and set it up.
 You may find it in Microsoft Teams Channel user interfaces by using
-Incomming Webhook connector via: **Channel Name -> Connectors -> Incomming Webhook**
-
-## Incomming Webhook format
-```
-https://outlook.office.com/webhook/<HASH_1>/IncomingWebhook/<HASH_2>/<HASH_3>
-```
+Flows via: **Workflows -> Create flow from templates -> Post a workflow when a webhook request is received**
 
 ## Testing simple notification message
 Sending of simple notification message can be tested manualy with terminal curl program:   
 ```
-curl -H "Content-Type: application/json" -d "{\"text\": \"Notification from Rundeck\"}" https://outlook.office.com/webhook/<HASH_1>/IncomingWebhook/<HASH_2>/<HASH_3>
+curl -v -k -X POST -H "Content-Type: application/json" -d "{\"type\": \"message\",\"attachments\": [{\"contentType\": \"application/vnd.microsoft.card.adaptive\",\"contentUrl\": null,\"content\": {\"type\": \"AdaptiveCard\",\"version\": \"1.4\",\"body\": [{\"type\": \"TextBlock\",\"text\": \"Notification from Rundeck\"}]}}]}" WORKFLOW_URL
 ```
 
 ## Manual Instalation from terminal
