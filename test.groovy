@@ -4,26 +4,71 @@ import groovy.json.JsonOutput
 def sendMessage(type, color, configuration, execution) {
   //with no args, there is a "configuration" and an "execution" variable in the context
   //sendMessage(type, color, configuration, execution)
-  json_payload = JsonOutput.toJson( [
-      title: "Rundeck Job Notification",
-      summary: "Rundeck Job Notification",
-      text: "${type} job: #${execution.id}: ${execution.project} ${execution.status} at ${execution.dateEnded}",
-      themeColor: "${color}",
-      potentialAction: [
-          [
-              "@context": "http://schema.org",
-              "@type": "ViewAction",
-              name: "Seed job execution",
-              target: ["${execution.href}"]
+  adaptive_card_payload = JsonOutput.toJson([
+    type: "message",
+    attachments: [
+      [
+        contentType: "application/vnd.microsoft.card.adaptive",
+        contentUrl: null,
+        content: [
+          type: "AdaptiveCard",
+          version: "1.4",
+          body: [
+            [
+              type: "RichTextBlock",
+              inlines: [
+                [
+                  type: "TextRun",
+                  text: "[${type}] Rundeck Job Notification",
+                  weight: "Bolder",
+                  size: "Medium",
+                  color: "${color}"
+                ]
+              ]
+            ],
+            [
+              type: "TextBlock",
+              text: "Job project: ${execution.project}",
+              wrap: true
+            ],
+            [
+              type: "TextBlock",
+              text: "Job name: ${execution.job.name}",
+              wrap: true
+            ],
+            [
+              type: "TextBlock",
+              text: "Job id: ${execution.id}",
+              wrap: true
+            ],
+            [
+              type: "TextBlock",
+              text: "Job status: ${execution.status}",
+              wrap: true
+            ],
+            [
+              type: "TextBlock",
+              text: "Started at: ${execution.dateStarted}",
+              wrap: true
+            ]
+          ],
+          actions: [
+            [
+              type: "Action.OpenUrl",
+              title: "Seed job execution",
+              url: "${execution.href}"
+            ]
           ]
+        ]
       ]
+    ]
   ])
 
-  return json_payload
+  return adaptive_card_payload
 }
 
 configuration = [
-  'webhook_url': '<URL HERE>'
+  'workflow_url': '<URL HERE>'
 ]
 
 execution = [
@@ -34,8 +79,8 @@ execution = [
 ]
 
 type = "START"
-color = "228B22"
+color = "Accent" // "Accent" or "Good" or "Warning" or "Attention"
 
-json_payload = sendMessage(type, color, configuration, execution)
-process = [ 'bash', '-c', "curl -v -k -X POST -H \"Content-Type: application/json\" -d '${json_payload}' ${configuration.webhook_url}" ].execute().text
+adaptive_card_payload = sendMessage(type, color, configuration, execution)
+process = [ 'bash', '-c', "curl -v -k -X POST -H \"Content-Type: application/json\" -d '${adaptive_card_payload}' '${configuration.workflow_url}'" ].execute().text
 print process
