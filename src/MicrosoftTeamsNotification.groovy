@@ -70,7 +70,7 @@ rundeckPlugin(NotificationPlugin) {
                 ]
             ]
         ])
-        process = ['bash', '-c', "curl -v -k -X POST -H \"Content-Type: application/json\" -d '${adaptive_card_payload}' '${configuration.workflow_url}'"].execute().text
+        process = ['bash', '-c', "curl -v -k -X POST -H \"Content-Type: application/json\" -d '${adaptive_card_payload}' '${configuration.webhook_url}'"].execute().text
 
         return true
     }
@@ -141,7 +141,7 @@ rundeckPlugin(NotificationPlugin) {
                 ]
             ]
         ])
-        process = ['bash', '-c', "curl -v -k -X POST -H \"Content-Type: application/json\" -d '${adaptive_card_payload}' '${configuration.workflow_url}'"].execute().text
+        process = ['bash', '-c', "curl -v -k -X POST -H \"Content-Type: application/json\" -d '${adaptive_card_payload}' '${configuration.webhook_url}'"].execute().text
 
         return true
     }
@@ -214,7 +214,7 @@ rundeckPlugin(NotificationPlugin) {
                 ]
             ]
         ])
-        process = ['bash', '-c', "curl -v -k -X POST -H \"Content-Type: application/json\" -d '${adaptive_card_payload}' '${configuration.workflow_url}'"].execute().text
+        process = ['bash', '-c', "curl -v -k -X POST -H \"Content-Type: application/json\" -d '${adaptive_card_payload}' '${configuration.webhook_url}'"].execute().text
 
         return true
     }

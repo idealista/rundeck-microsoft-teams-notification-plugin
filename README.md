@@ -9,7 +9,7 @@ Flows via: **Workflows -> Create flow from templates -> Post a workflow when a w
 ## Testing simple notification message
 Sending of simple notification message can be tested manualy with terminal curl program:   
 ```
-curl -v -k -X POST -H "Content-Type: application/json" -d "{\"type\": \"message\",\"attachments\": [{\"contentType\": \"application/vnd.microsoft.card.adaptive\",\"contentUrl\": null,\"content\": {\"type\": \"AdaptiveCard\",\"version\": \"1.4\",\"body\": [{\"type\": \"TextBlock\",\"text\": \"Notification from Rundeck\"}]}}]}" WORKFLOW_URL
+curl -v -k -X POST -H "Content-Type: application/json" -d "{\"type\": \"message\",\"attachments\": [{\"contentType\": \"application/vnd.microsoft.card.adaptive\",\"contentUrl\": null,\"content\": {\"type\": \"AdaptiveCard\",\"version\": \"1.4\",\"body\": [{\"type\": \"TextBlock\",\"text\": \"Notification from Rundeck\"}]}}]}" WEBHOOK_URL
 ```
 
 ## Manual Instalation from terminal
