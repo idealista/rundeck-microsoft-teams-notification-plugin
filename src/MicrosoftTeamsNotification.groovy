@@ -6,7 +6,7 @@ rundeckPlugin(NotificationPlugin) {
     description = "Allows to set up notification for Microsoft Teams chats for a channel, via Workflow URL. To use it you will have to obtain workflow for your channel first and set it up."
 
     configuration {
-        workflow_url title: "Workflow URL", required: true, type: "String", description: "You may find it in Microsoft Teams Channel user interfaces by using Flows via: Workflows -> Create flow from templates -> Post a workflow when a webhook request is received"
+        webhook_url title: "Webhook URL", required: true, type: "String", description: "You may find it in Microsoft Teams Channel user interfaces by using Flows via: Workflows -> Create flow from templates -> Post a workflow when a webhook request is received"
     }
 
     onstart {
