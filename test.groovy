@@ -68,7 +68,7 @@ def sendMessage(type, color, configuration, execution) {
 }
 
 configuration = [
-  'workflow_url': '<URL HERE>'
+  'webhook_url': '<URL HERE>'
 ]
 
 execution = [
@@ -82,5 +82,5 @@ type = "START"
 color = "Accent" // "Accent" or "Good" or "Warning" or "Attention"
 
 adaptive_card_payload = sendMessage(type, color, configuration, execution)
-process = [ 'bash', '-c', "curl -v -k -X POST -H \"Content-Type: application/json\" -d '${adaptive_card_payload}' '${configuration.workflow_url}'" ].execute().text
+process = [ 'bash', '-c', "curl -v -k -X POST -H \"Content-Type: application/json\" -d '${adaptive_card_payload}' '${configuration.webhook_url}'" ].execute().text
 print process
