@@ -22,11 +22,54 @@ rundeckPlugin(NotificationPlugin) {
                         version: "1.4",
                         body: [
                             [
+                                type: "TextBlock",
+                                size: "Medium",
+                                weight: "Bolder",
+                                text: "The job ${execution.project} >> ${execution.job.name} #${execution.id} has started",
+                                wrap: true
+                            ],
+                            [
+                                type: "ColumnSet",
+                                columns: [
+                                    [
+                                        type: "Column",
+                                        items: [
+                                            [
+                                                type: "Image",
+                                                url: "https://raw.githubusercontent.com/rundeck/rundeck/main/rundeckapp/grails-app/assets/images/logos/rundeck2-icon-32.png",
+                                                altText: "Rundeck Logo",
+                                                size: "Medium"
+                                            ]
+                                        ],
+                                        width: "auto"
+                                    ],
+                                    [
+                                      type: "Column",
+                                      items: [
+                                          [
+                                              type: "TextBlock",
+                                              weight: "Bolder",
+                                              text: "Rundeck Job Notification",
+                                              wrap: true
+                                          ],
+                                          [
+                                              type: "TextBlock",
+                                              spacing: "None",
+                                              text: "${execution.dateStarted}",
+                                              isSubtle: true,
+                                              wrap: true
+                                          ]
+                                      ],
+                                      width: "stretch"
+                                    ]
+                                ]
+                            ],
+                            [
                                 type: "RichTextBlock",
                                 inlines: [
                                     [
                                         type: "TextRun",
-                                        text: "[${type}] Rundeck Job Notification",
+                                        text: "[${type}]",
                                         weight: "Bolder",
                                         size: "Medium",
                                         color: "Accent"
@@ -34,29 +77,29 @@ rundeckPlugin(NotificationPlugin) {
                                 ]
                             ],
                             [
-                                type: "TextBlock",
-                                text: "Job project: ${execution.project}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Job name: ${execution.job.name}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Job id: ${execution.id}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Job status: ${execution.status}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Started at: ${execution.dateStarted}",
-                                wrap: true
+                                type: "FactSet",
+                                facts: [
+                                    [
+                                        title: "Job project",
+                                        value: "${execution.project}"
+                                    ],
+                                    [
+                                        title: "Job name",
+                                        value: "${execution.job.name}"
+                                    ],
+                                    [
+                                        title: "Job id",
+                                        value: "${execution.id}"
+                                    ],
+                                    [
+                                        title: "Job status",
+                                        value: "${execution.status}"
+                                    ],
+                                    [
+                                        title: "Started at",
+                                        value: "${execution.dateStarted}"
+                                    ]
+                                ]
                             ]
                         ],
                         actions: [
@@ -88,11 +131,54 @@ rundeckPlugin(NotificationPlugin) {
                         version: "1.4",
                         body: [
                             [
+                                type: "TextBlock",
+                                size: "Medium",
+                                weight: "Bolder",
+                                text: "The job ${execution.project} >> ${execution.job.name} #${execution.id} completed successfully",
+                                wrap: true
+                            ],
+                            [
+                                type: "ColumnSet",
+                                columns: [
+                                    [
+                                        type: "Column",
+                                        items: [
+                                            [
+                                                type: "Image",
+                                                url: "https://raw.githubusercontent.com/rundeck/rundeck/main/rundeckapp/grails-app/assets/images/logos/rundeck2-icon-32.png",
+                                                altText: "Rundeck Logo",
+                                                size: "Small"
+                                            ]
+                                        ],
+                                        width: "auto"
+                                    ],
+                                    [
+                                      type: "Column",
+                                      items: [
+                                          [
+                                              type: "TextBlock",
+                                              weight: "Bolder",
+                                              text: "Rundeck Job Notification",
+                                              wrap: true
+                                          ],
+                                          [
+                                              type: "TextBlock",
+                                              spacing: "None",
+                                              text: "${execution.dateStarted}",
+                                              isSubtle: true,
+                                              wrap: true
+                                          ]
+                                      ],
+                                      width: "stretch"
+                                    ]
+                                ]
+                            ],
+                            [
                                 type: "RichTextBlock",
                                 inlines: [
                                     [
                                         type: "TextRun",
-                                        text: "[${type}] Rundeck Job Notification",
+                                        text: "[${type}]",
                                         weight: "Bolder",
                                         size: "Medium",
                                         color: "Good"
@@ -100,34 +186,33 @@ rundeckPlugin(NotificationPlugin) {
                                 ]
                             ],
                             [
-                                type: "TextBlock",
-                                text: "Job project: ${execution.project}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Job name: ${execution.job.name}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Job id: ${execution.id}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Job Status: ${execution.status}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Started At: ${execution.dateStarted}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Ended At: ${execution.dateEnded}",
-                                wrap: true
+                                type: "FactSet",
+                                facts: [
+                                    [
+                                        title: "Job project",
+                                        value: "${execution.project}"
+                                    ],
+                                    [
+                                        title: "Job name",
+                                        value: "${execution.job.name}"
+                                    ],
+                                    [
+                                        title: "Job id",
+                                        value: "${execution.id}"
+                                    ],
+                                    [
+                                        title: "Job status",
+                                        value: "${execution.status}"
+                                    ],
+                                    [
+                                        title: "Started at",
+                                        value: "${execution.dateStarted}"
+                                    ],
+                                    [
+                                        title: "Ended at",
+                                        value: "${execution.dateEnded}"
+                                    ]
+                                ]
                             ]
                         ],
                         actions: [
@@ -158,11 +243,54 @@ rundeckPlugin(NotificationPlugin) {
                         version: "1.2",
                         body: [
                             [
+                                type: "TextBlock",
+                                size: "Medium",
+                                weight: "Bolder",
+                                text: "The job ${execution.project} >> ${execution.job.name} #${execution.id} failed",
+                                wrap: true
+                            ],
+                            [
+                                type: "ColumnSet",
+                                columns: [
+                                    [
+                                        type: "Column",
+                                        items: [
+                                            [
+                                                type: "Image",
+                                                url: "https://raw.githubusercontent.com/rundeck/rundeck/main/rundeckapp/grails-app/assets/images/logos/rundeck2-icon-32.png",
+                                                altText: "Rundeck Logo",
+                                                size: "Small"
+                                            ]
+                                        ],
+                                        width: "auto"
+                                    ],
+                                    [
+                                      type: "Column",
+                                      items: [
+                                          [
+                                              type: "TextBlock",
+                                              weight: "Bolder",
+                                              text: "Rundeck Job Notification",
+                                              wrap: true
+                                          ],
+                                          [
+                                              type: "TextBlock",
+                                              spacing: "None",
+                                              text: "${execution.dateStarted}",
+                                              isSubtle: true,
+                                              wrap: true
+                                          ]
+                                      ],
+                                      width: "stretch"
+                                    ]
+                                ]
+                            ],
+                            [
                                 type: "RichTextBlock",
                                 inlines: [
                                     [
                                         type: "TextRun",
-                                        text: "[${type}] Rundeck Job Notification",
+                                        text: "[${type}]",
                                         weight: "Bolder",
                                         size: "Medium",
                                         color: "Attention"
@@ -170,34 +298,33 @@ rundeckPlugin(NotificationPlugin) {
                                 ]
                             ],
                             [
-                                type: "TextBlock",
-                                text: "Job project: ${execution.project}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Job name: ${execution.job.name}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Job id: ${execution.id}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Job Status: ${execution.status}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Started At: ${execution.dateStarted}",
-                                wrap: true
-                            ],
-                            [
-                                type: "TextBlock",
-                                text: "Ended At: ${execution.dateEnded}",
-                                wrap: true
+                                type: "FactSet",
+                                facts: [
+                                    [
+                                        title: "Job project",
+                                        value: "${execution.project}"
+                                    ],
+                                    [
+                                        title: "Job name",
+                                        value: "${execution.job.name}"
+                                    ],
+                                    [
+                                        title: "Job id",
+                                        value: "${execution.id}"
+                                    ],
+                                    [
+                                        title: "Job status",
+                                        value: "${execution.status}"
+                                    ],
+                                    [
+                                        title: "Started at",
+                                        value: "${execution.dateStarted}"
+                                    ],
+                                    [
+                                        title: "Ended at",
+                                        value: "${execution.dateEnded}"
+                                    ]
+                                ]
                             ],
                             [
                                 type: "ActionSet",
